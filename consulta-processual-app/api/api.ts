@@ -48,7 +48,7 @@ export const buscarProcessosPorTribunalQuery = gql`
 
 export async function buscarProcessoPorCNJ(numeroCNJ: string) {
   const client = createApolloClient();
-  const { error, data } = await client.query({
+  const { data } = await client.query({
     query: buscarProcessoPorCNJQuery,
     variables: {
       numeroCNJ,

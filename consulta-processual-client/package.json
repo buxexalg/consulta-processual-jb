@@ -20,7 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prisma:generate": "npx prisma generate",
     "prisma:migrate": "npx prisma migrate",
-    "prisma:seed": "ts-node ./prisma/seeds/processos.ts"
+    "prisma:seed": "ts-node ./prisma/seeds/processos.ts",
+    "test:coverage": "nyc mocha"
   },
   "dependencies": {
     "@apollo/gateway": "^2.9.2",
@@ -44,7 +45,7 @@
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
-    "@nestjs/testing": "^10.0.0",
+    "@nestjs/testing": "^10.4.4",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.16.11",
