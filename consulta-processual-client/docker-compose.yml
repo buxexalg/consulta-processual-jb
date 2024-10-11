@@ -1,19 +1,16 @@
 services:
-  postgres:
-    container_name: postgres
-    image: "postgres"
+  db:
+    container_name: pg_db
+    image: 'postgres'
     restart: always
     ports:
-      - 5434:5432
+      - 5432:5432
     environment:
-      - POSTGRES_HOST=localhost
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=consulta-processual
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=consulta
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-    networks:
-      - nestjs
+      - postgres-data:/var/lib/postgresql/data
 
   client:
     container_name: consulta-processual-client
@@ -24,15 +21,9 @@ services:
       - 4000:4000
     volumes:
       - ./src:/app/src
+      - ./node_modules:/app/node_modules
     depends_on:
-      - postgres
-    networks:
-      - nestjs
+      - db
 
 volumes:
   postgres-data:
-
-networks:
-  nestjs:
-    name: nestjs
-    driver: bridge
