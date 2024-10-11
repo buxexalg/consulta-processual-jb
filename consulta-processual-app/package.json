@@ -9,11 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.11.8",
     "@mantine/core": "^7.13.2",
+    "@mantine/dates": "^7.13.2",
+    "@mantine/form": "^7.13.2",
     "@mantine/hooks": "^7.13.2",
+    "@mantine/next": "^6.0.22",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "dayjs": "^1.11.13",
+    "graphql": "^16.9.0",
     "next": "14.2.15",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-imask": "^7.6.1"
   },
   "devDependencies": {
     "@types/node": "^20",
