@@ -31,6 +31,8 @@ Mantine
 - Zero runtime css (que isso)
 - simples e direto ao ponto. integração com next
 
+decidi pelo daisy depois de configurar tudo pq ele permite server components
+
 next UI
 
 - React server components
@@ -43,6 +45,13 @@ next UI
 MObile first development
 React server components?
 
+performance em detrimento de um projeto de mais qualidade (client components)
+
+1 pagina ou 2?
+
+mostrar apenas os tribunais disponiceis poderia causar uma confusão no usuário
+
+input vazio está enviando, não deveria
 ### Back
 
 - Next?
@@ -71,9 +80,26 @@ Pq não outras?
 	- Db solucionado automaticamente, mutations/seed de CRUD feito de forma automatizada
 	- sorting, filtering, pagination (evolução)
 	- Documentação feita através de CLI
+  Setup pelo nodejs foi fácil demais, entao nem precisou
 
 - Hono como middleware?
 - Schema First para manter os tipos de acordo com o schema
+
+PRisma
+- Open Source
+Typescripe ecosystem
+type-safety guarantees
+
+tratamento de erros?
+
+Arquitetura modular 
+- Model
+- Service
+- Controler
+
+vantagem pela injeção de dependencias
+
+TESTES?
 
 ## Confecção(?)
 
@@ -84,4 +110,33 @@ A questão dos multiplos repos pdoeria ser resolvida utilizando apenas o Next
 
 Qual arquitetura eu devo seguir?
 
+### Banco de dados
+1 tabela para processos e 1 para movimentações
+- Normalização de dados
+- Manutenção
+- escalabilidade (irrelevante)
+
+Tribunal
+- Enum ou cadastro?
+- Já que são fixos, o ideal seria um enum. Mas para evitar o trabalho braçal, deixei livre
+
+(Explicar mais a fundo o schema do banco de dados)
+Tabela intermediária
+- Esta tabela intermediária mapeia a relação N para N entre as tabelas Processo e Parte. Isso é necessário porque uma parte pode estar envolvida em muitos processos e vice-versa.
+Relation table
+
+ID
+- Por ser um projeto pequeno, segui pelo Integer. Mas isso afetaria a escalabilidade, nesse caso usaria GUID
+
+Vale a pena data e hora da movimentação?
+
+Informações placeholder do seed geradas pelo ChatGPT. São informações públicas mas decidi não utilizar informações reais.
+
+rodando apenas com 1 resource, em uma aplicação com crud completo talvez fosse interessante fechar o resource de parte e movimentacao
+
+adicionar tipagem no graphql.ts
+
+dificuldade no schema (puxando pontos errados)
+
+qual arquitetura?
 # Execução
