@@ -1,0 +1,101 @@
+scalar Date
+
+type Processo {
+  id: Int!
+  numeroCNJ: String!
+  tribunal: Tribunal!
+  data: Date!
+  movimentacoes: [Movimentacao]!
+  partes: [Parte]!
+}
+
+type Movimentacao {
+  id: Int!
+  dataDaMovimentacao: Date!
+  descricao: String!
+}
+
+type Parte {
+  id: Int!
+  nome: String!
+  tipo: TipoParte!
+  informacaoExtra: String
+}
+type Query {
+  buscarProcessosPorTribunal(tribunal: Tribunal!): [Processo!]!
+  buscarProcessoPorCNJ(numeroCNJ: String!): Processo!
+}
+
+enum Tribunal {
+  STF
+  STJ
+  TST
+  TSE
+  STM
+  CNJ
+
+  TJAC
+  TJAL
+  TJAM
+  TJAP
+  TJBA
+  TJCE
+  TJDFT
+  TJES
+  TJGO
+  TJMA
+  TJMG
+  TJMS
+  TJMT
+  TJPA
+  TJPB
+  TJPE
+  TJPI
+  TJPR
+  TJRJ
+  TJRN
+  TJRO
+  TJRR
+  TJRS
+  TJSC
+  TJSE
+  TJSP
+  TJTO
+
+  TRF1
+  TRF2
+  TRF3
+  TRF4
+  TRF5
+
+  TRT1
+  TRT2
+  TRT3
+  TRT4
+  TRT5
+  TRT6
+  TRT7
+  TRT8
+  TRT9
+  TRT10
+  TRT11
+  TRT12
+  TRT13
+  TRT14
+  TRT15
+  TRT16
+  TRT17
+  TRT18
+  TRT19
+  TRT20
+  TRT21
+  TRT22
+  TRT23
+  TRT24
+}
+
+enum TipoParte {
+  ADVOGADO
+  PARTE_ENVOLVIDA
+  JUIZ
+}
