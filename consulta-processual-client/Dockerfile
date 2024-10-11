@@ -1,18 +1,17 @@
 FROM node:18
 
-WORKDIR /app
+WORKDIR /
 
 COPY package*.json ./
+COPY ./prisma ./prisma
 
 RUN npm install
-
-COPY prisma ./prisma/
 
 COPY . .
 
 EXPOSE 4000
 
-#RUN npx prisma db push
-#RUN npm run prisma:seed
+RUN npx prisma db push
+RUN npm run prisma:seed
 
-CMD ["npm", "run", "start:dev"]
+CMD ["npm", "run", "start:prod"]
