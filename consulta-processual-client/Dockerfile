@@ -1,17 +1,19 @@
-FROM node:18
+FROM node:18 AS builder
 
-WORKDIR /
+WORKDIR /app
 
 COPY package*.json ./
-COPY ./prisma ./prisma
+COPY prisma ./prisma/
 
 RUN npm install
 
 COPY . .
 
+RUN npm run build
+
 EXPOSE 4000
 
 RUN npx prisma db push
-RUN npm run prisma:seed
+##RUN npm run prisma:seed
 
-CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "start:dev"]
