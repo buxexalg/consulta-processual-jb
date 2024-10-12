@@ -1,5 +1,5 @@
 import { AppShell, Flex } from "@mantine/core";
-import Busca from "./components/busca";
+import Busca from "./busca";
 
 export default function Home() {
   return (

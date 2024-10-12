@@ -38,7 +38,7 @@ export default function Busca() {
 
     validate: {
       tribunal: (tribunal) => {
-        if (!tribunal.value && !form.values.numeroCNJ) {
+        if (!tribunal && !form.values.numeroCNJ) {
           return "Selecione um tribunal ou insira um CNJ";
         }
       },
@@ -54,9 +54,10 @@ export default function Busca() {
   });
 
   const handleSubmit = async (values: typeof form.values) => {
+    console.log(values);
     if (values.numeroCNJ) {
       router.push(`/processos/${values.numeroCNJ}`);
-    } else if (!!values.tribunal.value) {
+    } else if (!!values.tribunal) {
       router.push(`/processos/${values.tribunal}`);
     }
   };
