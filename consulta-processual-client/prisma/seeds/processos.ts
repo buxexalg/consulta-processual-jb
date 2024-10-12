@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import * as dotenv from 'dotenv';
 import {
-  movimentacao,
-  parte,
-  processo,
-  parteNoProcesso,
   Tribunal,
   PrismaClient,
   TipoParte,
@@ -377,36 +373,34 @@ class CoursesSeed {
       },
     ];
 
-    await Promise.all(
-      processos.map((processo) =>
-        prisma.processo.create({
-          data: {
-            data: processo.data,
-            numeroCNJ: processo.numeroCNJ,
-            tribunal: processo.tribunal,
-            movimentacoes: {
-              createMany: {
-                data: processo.movimentacoes.map((mov) => ({
-                  dataDaMovimentacao: mov.dataDaMovimentacao,
-                  descricao: mov.descricao,
-                })),
-              },
-            },
-            partes: {
-              create: processo.partes.map((parte) => ({
-                parte: {
-                  create: {
-                    nome: parte.nome,
-                    tipo: parte.tipo,
-                    informacaoExtra: parte.informacaoExtra || '',
-                  },
-                },
+    for (const processo of processos) {
+      await prisma.processo.create({
+        data: {
+          data: processo.data,
+          numeroCNJ: processo.numeroCNJ,
+          tribunal: processo.tribunal,
+          movimentacoes: {
+            createMany: {
+              data: processo.movimentacoes.map((mov) => ({
+                dataDaMovimentacao: mov.dataDaMovimentacao,
+                descricao: mov.descricao,
               })),
             },
           },
-        }),
-      ),
-    );
+          partes: {
+            create: processo.partes.map((parte) => ({
+              parte: {
+                create: {
+                  nome: parte.nome,
+                  tipo: parte.tipo,
+                  informacaoExtra: parte.informacaoExtra || '',
+                },
+              },
+            })),
+          },
+        },
+      });
+    }
   }
 
   async run() {
