@@ -1,12 +1,7 @@
-import {
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-  UseInterceptors,
-} from '@nestjs/common';
-import { PrismaService } from 'src/database/services/prisma.service';
-import { ProcessoMapper } from 'src/database/mappers/processo.mapper';
-import { IQuery, Processo } from 'src/graphql';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { ProcessoMapper } from '../../database/mappers/processo.mapper';
+import { PrismaService } from '../../database/services/prisma.service';
+import { IQuery, Processo } from '../../graphql';
 
 @Injectable()
 export class ProcessoService implements IQuery {
