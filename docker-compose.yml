@@ -1,0 +1,22 @@
+services:
+  consulta-processual-client:
+    container_name: consulta-processual-client
+    build:
+      context: ./consulta-processual-client/
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    volumes:
+      - ./consulta-processual-client/src:/app/src
+  consulta-processual-app:
+    container_name: consulta-processual-app
+    build:
+      context: ./consulta-processual-app/
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./consulta-processual-client/src:/app/src
+
+volumes:
+  postgres-data:
