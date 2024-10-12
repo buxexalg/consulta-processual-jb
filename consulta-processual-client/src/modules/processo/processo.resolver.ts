@@ -1,7 +1,7 @@
-import { Args, Query, Resolver } from '@nestjs/graphql';
-import { ProcessoService } from './processo.service';
-import { Processo, Tribunal } from 'src/graphql';
 import { Inject } from '@nestjs/common';
+import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Processo, Tribunal } from '../../graphql';
+import { ProcessoService } from './processo.service';
 
 @Resolver('Processo')
 export class ProcessoResolver {
