@@ -55,7 +55,6 @@ export default function Busca() {
   });
 
   const handleSubmit = async (values: typeof form.values) => {
-    console.log(values);
     if (values.numeroCNJ) {
       router.push(`/processos/${values.numeroCNJ}`);
     } else if (values.tribunal) {
