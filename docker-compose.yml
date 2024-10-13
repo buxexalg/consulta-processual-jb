@@ -4,8 +4,6 @@ services:
     build:
       context: ./consulta-processual-client/
       dockerfile: Dockerfile
-    env_file:
-      - ./consulta-processual-client/.env.docker
     ports:
       - 4000:4000
     volumes:
