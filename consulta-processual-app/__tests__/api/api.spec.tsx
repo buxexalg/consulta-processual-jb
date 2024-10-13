@@ -6,7 +6,7 @@ import { TribunalEnum } from "@/types/processo.types";
 import { ApolloClient } from "@apollo/client";
 import createApolloClient from "../../pages/api/apollo-client";
 
-jest.mock("../api/apollo-client", () => jest.fn());
+jest.mock("../../pages/api/apollo-client.ts", () => jest.fn());
 
 describe("API Functions", () => {
   let mockClient: ApolloClient<any>;

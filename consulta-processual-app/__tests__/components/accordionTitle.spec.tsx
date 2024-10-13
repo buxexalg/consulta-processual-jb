@@ -1,10 +1,10 @@
 import { TribunalEnum } from "@/types/processo.types";
 import { screen } from "@testing-library/react";
-import AccordionTitle from "../pages/processos/[id]/accordionTitle";
-import { formatDate } from "../pages/processos/[id]/utils";
 import { render } from "@/test-utils/render";
+import AccordionTitle from "@/pages/processos/[id]/accordionTitle";
+import { formatDate } from "@/pages/processos/[id]/utils";
 
-jest.mock("../pages/processos/[id]/utils", () => ({
+jest.mock("../../pages/processos/[id]/utils.ts", () => ({
   formatDate: jest.fn(),
 }));
 

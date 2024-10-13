@@ -28,7 +28,7 @@ const mockProcessos: Processo[] = [
   },
 ];
 
-jest.mock("../api/api");
+jest.mock("../../pages/api/api.ts");
 
 describe("Page component", () => {
   describe("gerServerSideProps", () => {

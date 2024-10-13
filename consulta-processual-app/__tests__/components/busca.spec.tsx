@@ -1,8 +1,8 @@
+import Busca from "@/pages/busca";
+import { render } from "@/test-utils/render";
 import "@testing-library/jest-dom";
 import { fireEvent, screen } from "@testing-library/react";
 import { useRouter } from "next/navigation";
-import Busca from "../pages/busca";
-import { render } from "../test-utils/render";
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
@@ -65,8 +65,8 @@ describe("Busca component", () => {
     const submitButton = screen.getByTestId("search-submit-button");
     fireEvent.click(submitButton);
 
-    const errorMessage = await screen.findByText((content, element) => {
-      return content.startsWith("Selecione um tribunal");
+    const errorMessage = await screen.findByText((content) => {
+      return content.startsWith("Selecione um tribunal ou insira um CNJ");
     });
 
     expect(errorMessage).toBeInTheDocument();
