@@ -42,7 +42,7 @@ describe("API Functions", () => {
 
       expect(createApolloClient).toHaveBeenCalled();
       expect(mockClient.query).toHaveBeenCalledWith({
-        query: expect.anything(), // Verifica que a query foi chamada (o gql)
+        query: expect.anything(),
         variables: { numeroCNJ: "1234567-89.2020.1.23.4567" },
       });
       expect(result).toEqual({
