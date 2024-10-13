@@ -1,58 +1,79 @@
-# Planejamento do projeto
+# Registro de progresso de implementação do projeto de Consulta Processual
 
-## Tecnologias a serem utilizadas
+Após analisar os requisitos necessários para a entrega do projeto, foi iniciado um estudo para entender quais as melhores soluções de implementação para que fosse alcançado um projeto funcional, coeso, legível e sustentável. A ideia inicial no levantamento de possíveis tecnologias eram tecnologias que eu já tivesse pelo menos um pouco de familiaridade, para quer não fosse gasto muito tempo no processo de setup inicial de mogo que esse esforço fosse alocado em partes mais essenciais do sistema. A ideia inicial era levantar uma base forte rapidamente e construir a partir disso. 
 
-### Front
+## Frontend
 
-- Next
-  - Next tem end to end. Devo utilizar
-  - Caso não use, seria mais interessante utilizar outros frameworks SPA?
-  - embora seja um projeto rápido, essa estrutura pode ser mantida a longo prazo?
-  - Deploy, release, distribuição de responsabilidades
-  - São apenas 2 rotas mas o NextJs me permite ter um gerenciamento fácil delas
-  - Por ser uma página de consulta, o ideal é que seja de rápido carregamento. Foco em redução de bundle, carregamento otimizado, cache e SSR (faz sentido?)
-  - Pensando em uma página de consulta, SEo seria importante? (ssr)
+### SSR ou SSG?
 
-Não posso esquecer de verificar bundles
+A sugestão da página do projeto consistia em uma aplicação de busca e consulta de processos jurídicos, e pensando nisso imaginei que seria uma página com diversas palavras chave para indexação em SEO. Com isso em mente, direcionei o projeto para performance de carregamento e melhores soluções de SEO com a utilização de SSR e React Server Components.
 
-Vite?
+### Frameworks
 
-- NEXT permite velocidade, vite permite ajustes finos. Para esse projeto faz sentido a velocidade de um pacote inicial mais preparado
-- Vai entregar velociadde mas pode pecar no SEO
+Visando a velocidade de setup, iniciei o estudo de possibilidades com tecnologias que me permitissem agilizar o processo inicial de um `create-react-app` e tivesse robustez de possibilidades para abarcar esse projeto. A partir disso, pensei em:
 
-Biblioteca de componentes?
+#### Vite
 
-DaisyUI
+- O Vite permite otimizar diversas etapas iniciais de configuração de um projeto React, além de introduzir tecnologias voltadas para otimização do projeto
+- Permite a implementação de componentes e estrutura em SSR, porém demandaria um esforço maior na implementação desses casos. A utilização da técnica de SSG seria possível para esse caso, mas pensando em uma página de consulta e agregamento de informações, otimizações de SEO através de SSR são pontos importantes a se considerar. 
 
-- Reduzir bundle
+#### NextJs
 
-Mantine
+- Ao considerar iniciar a aplicação em NextJs, a possibilidade de fazer uma implementação end to end em cima do Nest API foi levada em consideração. Essa possibilidade permitiria a utilização de uma aplicação única tendo a responsabilidade da aplicação e do client API. 
+- O sistema de gerenciamento de rotas do Next, seja por `App Router` ou por `Page Router`, permite um rápido gerenciamento de componentes e roteamento, reduzindo a necessidade de investimento de tempo em setup de um `react-router` e gerenciamento de pastas de componentes e páginas.
+- NextJs entrega uma série de tecnologias como, redução de bundle, carregamento orimizado, cache e SSR nativo, permitindo otimização de tempo de carregamento e SEO, pontos importantes a se considerar em uma página de consulta.
 
-- Zero runtime css (que isso)
-- simples e direto ao ponto. integração com next
+Nesse primeiro momento, por conta das vantagens de otimização, gerenciamento de rotas, CLI de configuração com rapidez e facilidade de uso, o NextJs foi escolhido como framework de trabalho para a aplicação frontend. Porém, após alguns testes iniciais, a possibilidade de utilizar esse frameworm como uma aplicação end to end foi descartada.
 
-decidi pelo daisy depois de configurar tudo pq ele permite server components
+Utilizar uma outra aplicação para o gerenciamento do banco de dados, rotas de Apis e interação com o GraphQl traria mais vantagens pensando em separação de responsabilidades, manutenção a longo prazo, deploy e release (principalmente considerando que nesse ponto do desenvolvimento não tinha certeza se faria um deploy em prd dessas aplicações)
 
-next UI
+### Biblioteca de componentes
 
-- React server components
-  Acessibilidade (WAI-ARIA)
-  Possibilidade de instalar só pacotes que vão ser utilizados
-  ts
-  zero runtime css
-  Ainda em desenvolvimento :/
+A utilização de uma biblioteca de componentes foi um dos pontos fixos desde a conecpção desse projeto. A possibilidade de utilizar componentes já preparados com temas definidos, regras de estilização robustas, acessibilidade e responsividade garantia que seria possível entregar uma aplicação visualmente funcional. Dentre as opções levantadas inicialmente, estavam:
 
-MObile first development
-React server components?
+#### DaisyUI
 
-performance em detrimento de um projeto de mais qualidade (client components)
+NextJs é otimizado para a utilização com Tailwind CSS, com isso em mente foi levantada a possibilidade de utilizar o DaisyUI já que é uma biblioteca de componentes específica para Tailwind.
 
-1 pagina ou 2?
+- Um dos principais pontos de ataque do DaisyUi é legibilidade de código, já que Tailwind pode acabar tendo uma estilização verborrágica no HTML.
+- Uma das consequências do DaisyUI ter pacotes de estilização dentro do código é a redução do tamanho do bundle, permitindo uma aplicação melhor otimizada.
+- Além disso, por ser uma biblioteca de Zero Runtime CSS, ela é otimizada para a implementação de React Server Components, que vão ser a base do projeto.
 
-mostrar apenas os tribunais disponiceis poderia causar uma confusão no usuário
+#### Mantine UI
 
-input vazio está enviando, não deveria
-### Back
+O destaque do Mantine UI vem a partir da possibilidade de ter componentes mais próximos da prontidão de uso em relação ao Daisy, sem a necessidade de manipular quaisquer classes. Além disso:
+
+- Biblioteca de componentes englobando componentes essenciais e de layout
+- Possibilidade de utilização de componentes Server Side
+- Possibilidade de instalar só pacotes que vão ser utilizados
+
+#### Next UI
+
+A biblioteca de componentes do Next, permite uma série de coisas interessantes:
+
+- Utilização nativa de React server components
+- Acessibilidade (WAI-ARIA) já implementada em seus componentes
+- Possibilidade de instalar só pacotes que vão ser utilizados
+- Zero runtime css
+- Embora tenha uma série de pontos interessantes, é uma biblioteca ainda em desenvolvimento que não detém alguns componentes básicos para utilização.
+
+Houve uma versão inicial do projeto em que o Daisy UI foi escolhido como biblioteca de componentes inicial, mas ao avaliar que muito tempo estava sendo dedicado a pequenos ajustes de estilização nos componentes disponibilizados, foi feita uma transição para o Mantine UI, que foi utilizado até o fim do desenvolvimento.
+
+
+### Implementação
+
+Alguns pontos relevantes surgiram ao longo da implementação desse projeto. O primeiro deles foi a decisão de implementar o layout pensando em uma experiência Mobile First, já que seria mais eficiente escalonar os componentes Mobile -> Desktop, do que o caminho inverso.
+
+Houveram algumas idas e vindas em relação a execução correta das tecnologias de SSR e React Server Components, em parte por conta da incompatibilidade dos componentes SSR do Mantine UI com o novo roteamento de `App Routes` do NextJs. Mas depois de uma série de pesquisas e testes, foi decidido utilizar o roteamento `Page Routes` já que permitiria a implementação nativa de React Server Components com o Mantine. 
+
+Também houve um momento de decisão em relação a utilizar uma página única com um componente de busca e exibição de processos, mas foi decidido que seria mais interessante para manutenção de aplicação dividir as responsabilidade de cada página. Além disso, foi pensado na possibilidade do componente de `select` exibir apenas os tribunais que tinham processos associados a eles, removendo os que trariam um array vazio como resposta, mas isso traria atrito com o usuário podendo resultar em reclamações como "Gostaria de conferir os professos do TJBA mas eles não aparecem para selecionar".
+
+### Testes
+
+Por serem duas páginas básica o fluxo de testes acabou sendo simples e direto ao ponto. Com alguns testes de interação, snapshots, interações com API e roteamento, todos através do Jest e React Testing Library. Por conta disso, houve tempo hábil para uma implementação básica de testes e2e através do Cypress, permitindo alguns testes de UI e usabilidade.
+
+
+### Backend
 
 - Next?
   - Simplicidade
@@ -101,6 +122,8 @@ vantagem pela injeção de dependencias
 
 TESTES?
 
+seed com apenas 1 conexão por vez
+
 ## Confecção(?)
 
 Multi repo ou repositório único?
@@ -140,3 +163,6 @@ dificuldade no schema (puxando pontos errados)
 
 qual arquitetura?
 # Execução
+Aumentaria cobertura de testes. Tem uma base boa, mas dá para melhorar
+
+verificar comentarios // e logs
