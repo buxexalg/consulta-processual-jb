@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
-import AccordionContent from "../pages/processos/[id]/accordionContent";
 import { render } from "@/test-utils/render";
+import AccordionContent from "@/pages/processos/[id]/accordionContent";
 
 describe("AccordionContent Component", () => {
   it("should render the title, description, and extra info when provided", () => {
