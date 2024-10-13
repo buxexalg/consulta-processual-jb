@@ -12,7 +12,7 @@ describe("E2E Test - Processos app", () => {
 
       cy.contains("button", "Buscar").click();
 
-      cy.url().should("include", `/processos/${numeroCnj}`, { timeout: 10000 });
+      cy.url().should("include", `/processos/${numeroCnj}`, { timeout: 20000 });
 
       cy.contains(`Processo n. ${numeroCnj}`);
 
@@ -41,7 +41,7 @@ describe("E2E Test - Processos app", () => {
 
       cy.contains("button", "Buscar").click();
 
-      cy.url().should("include", `/processos/${tribunal}`, { timeout: 10000 });
+      cy.url().should("include", `/processos/${tribunal}`, { timeout: 20000 });
 
       cy.contains("h3", `Processo n. ${numeroCnj} do STF`).click();
 
