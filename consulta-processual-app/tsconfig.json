@@ -16,12 +16,7 @@
       "@/*": ["./*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "../consulta-processual-app2/app/processos/[...id]/page.tsx",
-    "../consulta-processual-app2/app/page.tsx"
-  ],
+  "typeAcquisition": { "include": ["jest"] },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.spec.ts"],
   "exclude": ["node_modules"]
 }
