@@ -33,14 +33,15 @@ export default function Busca() {
     mode: "uncontrolled",
     initialValues: {
       numeroCNJ: "",
-      tribunal: nativeSelectValues[0],
+      tribunal: "",
     },
 
     validate: {
-      tribunal: (tribunal) => {
-        if (!tribunal && !form.values.numeroCNJ) {
+      tribunal: (tribunal, values) => {
+        if (!tribunal && !values.numeroCNJ) {
           return "Selecione um tribunal ou insira um CNJ";
         }
+        return null;
       },
       numeroCNJ: (value) => {
         if (value) {
@@ -57,7 +58,7 @@ export default function Busca() {
     console.log(values);
     if (values.numeroCNJ) {
       router.push(`/processos/${values.numeroCNJ}`);
-    } else if (!!values.tribunal) {
+    } else if (values.tribunal) {
       router.push(`/processos/${values.tribunal}`);
     }
   };
@@ -71,8 +72,10 @@ export default function Busca() {
       h={{ base: "100%", lg: "auto" }}
     >
       <Stack>
-        <Title order={1}>Buscar</Title>
-        <Text size="md">
+        <Title order={1} data-testid="search-title">
+          Buscar
+        </Title>
+        <Text size="md" data-testid="search-subtitle">
           Selecione um tribunal para listar os processos ou buscar pelo número
           unificado
         </Text>
@@ -85,6 +88,7 @@ export default function Busca() {
           <NativeSelect
             data={nativeSelectValues}
             key={form.key("tribunal")}
+            data-testid="search-tribunal-input"
             {...form.getInputProps("tribunal")}
           />
           <InputBase
@@ -92,9 +96,16 @@ export default function Busca() {
             mask="0000000-00.0000.0.00.0000"
             placeholder="Número de processo"
             key={form.key("numeroCNJ")}
+            data-testid="search-cnj-input"
             {...form.getInputProps("numeroCNJ")}
           />
-          <Button type="submit" variant="filled" color="black" size="xl">
+          <Button
+            type="submit"
+            variant="filled"
+            color="black"
+            size="xl"
+            data-testid="search-submit-button"
+          >
             Buscar
           </Button>
         </form>

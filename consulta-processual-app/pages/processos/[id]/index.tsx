@@ -1,4 +1,7 @@
-import { buscarProcessoPorCNJ, buscarProcessosPorTribunal } from "@/api/api";
+import {
+  buscarProcessoPorCNJ,
+  buscarProcessosPorTribunal,
+} from "@/pages/api/api";
 import { Processo, TribunalEnum } from "@/types/processo.types";
 import {
   Accordion,
@@ -90,11 +93,12 @@ export default function Page({ processos }: pageProps) {
                 key={processo.numeroCNJ}
                 value={processo.numeroCNJ}
               >
-                <Accordion.Control>
+                <Accordion.Control data-testid="accordion-control">
                   <AccordionTitle
                     numeroCNJ={processo.numeroCNJ}
                     tribunal={processo.tribunal}
                     data={processo.data}
+                    data-testid="accordion-title"
                   />
                 </Accordion.Control>
                 <Accordion.Panel>
@@ -112,6 +116,7 @@ export default function Page({ processos }: pageProps) {
                     {processo.movimentacoes.length &&
                       processo.movimentacoes.map((movimentacao, i) => (
                         <AccordionContent
+                          data-testid="accordion-content"
                           key={i}
                           title={formatDate(movimentacao.dataDaMovimentacao)}
                           description={movimentacao.descricao}
