@@ -72,6 +72,14 @@ E para executar os testes e2e através do cypress, execute na raíz do diretóri
 npm install && npm run cypress:open
 ```
 
+E diga o fluxo: E2E Testing > Chrome > Start E2E Testing > E2E Flow.
+
+Caso não queira navegar na interface gráfica do Cypress, use o comando
+
+```
+npm install && npm run cypress:run
+```
+
 #### Páginas
 
 - `/`: Homepage, onde é possível fazer a consulta de um processo através do número de CNJ e de um ou mais processos através do tribunal o qual eles foram registrados.
