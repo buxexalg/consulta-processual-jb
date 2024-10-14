@@ -61,7 +61,7 @@ npm install && npm run test:cov
 Para executar os testes unitários, execute na raíz do diretório `consulta-processual-app`
 
 ```
-npm install && npm run test:cov
+npm install && npm run test
 ```
 
 E para executar os testes e2e através do cypress, execute na raíz do diretório `consulta-processual-app` o seguinte comando com a aplicação em execução
