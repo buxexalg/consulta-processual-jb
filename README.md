@@ -28,6 +28,8 @@ A instalação local dos repositórios não é necessária, já que a execução
 docker compose up --build
 ```
 
+Os testes unitários de ambos os ambientes são executados junto com o comando de inicialização acima. Mas, caso queira executá-los manualmente, a categoria abaixo exemplifica como. 
+
 O App frontend estará disponível em:
 
 ```
